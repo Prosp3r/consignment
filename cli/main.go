@@ -16,13 +16,13 @@ const (
 	defaultFilename = "consignment.json"
 )
 
-func parseFile(file string) (*pd.Consignment, error) {
+func parseFile(file string) (*pb.Consignment, error) {
 	var consignment *pb.Consignment
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}
-	json.Unmarshal(data, &consigment)
+	json.Unmarshal(data, &consignment)
 	return consignment, err
 }
 
