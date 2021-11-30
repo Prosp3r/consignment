@@ -17,7 +17,7 @@ const (
 
 type repository interface {
 	Create(*pb.Consignment) (*pb.Consignment, error)
-	GetAll() ([]*pb.Consignment, error)
+	GetAll() []*pb.Consignment
 }
 
 type Repository struct {
@@ -50,10 +50,7 @@ func (s *service) CreateConsignment(ctx context.Context, req *pb.Consignment) (*
 }
 
 func (s *service) GetConsignments(ctx context.Context, req *pb.GetRequest) (*pb.Response, error) {
-	consignments, err := s.repo.GetAll()
-	if err != nil {
-		log.Fatalf("Could not get all: ", err)
-	}
+	consignments := s.repo.GetAll()
 	return &pb.Response{Consignment: consignments}, nil
 }
 
